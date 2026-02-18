@@ -12,4 +12,19 @@ public class StringsController(IStringService stringService) : ControllerBase
     {
         return Ok(stringService.Reverse(input));
     }
+
+    public static string ReverseWords(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return input; 
+        // Split on spaces, remove empty entries
+        string[] words = input.Split(' ',
+            StringSplitOptions.RemoveEmptyEntries);
+        
+        // Reverse the array
+        Array.Reverse(words);
+        
+        // Join back into a single string
+        return string.Join(" ", words);
+    }
 }
